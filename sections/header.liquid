@@ -30,15 +30,15 @@
                                                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
                                              </svg>
                                         </button>
-                                        {%- if link.links.size > 3 -%}
-                                             {% assign remainder = link.links.size | modulo: 4 %}
-                                             {% if remainder == 0 %}
-                                                  {% assign countChildLink = link.links.size | divided_by: 4 %}
-                                             {% else %}
-                                                  {% assign countChildLink = link.links.size | divided_by: 4 %}
-                                                  {% assign countChildLink = countChildLink | plus: 1 %}
-                                             {% endif %}
-                                        {%- endif -%}
+                                        {%- if link.links.size > 3 
+                                             assign remainder = link.links.size | modulo: 4
+                                             if remainder == 0 
+                                                  assign countChildLink = link.links.size | divided_by: 4
+                                             else 
+                                                  assign countChildLink = link.links.size | divided_by: 4
+                                                  assign countChildLink = countChildLink | plus: 1 
+                                             endif 
+                                         endif -%}
                                         <div
                                              id="mega-menu-dropdown"
                                              class="absolute z-10 grid hidden w-auto grid-cols-{%- if link.links.size >= 4 -%}{{ countChildLink }}{%- else -%}'1'{%- endif %} text-sm bg-white border border-gray-100 rounded-lg shadow-md dark:border-gray-700 tag dark:bg-gray-700 dark:text-gray-400"

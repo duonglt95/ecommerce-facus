@@ -43,7 +43,7 @@
                                    class="form-control"
                                    required=""
                               >
-                                   <option value="" disabled="disabled">Choose an option</option>
+                                   <option selected value="" disabled="disabled">Choose an option</option>
                                    {% for variant in product.variants %}
                                         {% if variant.available %}
                                              <option value="{{ variant.id }}">
