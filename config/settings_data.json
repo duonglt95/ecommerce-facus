@@ -1,6 +1,15 @@
 {
-  "current": "Default",
+  "current": {
+    "checkout_logo_image": "shopify:\/\/shop_images\/noob.gif",
+    "checkout_sidebar_background_color": "#111827",
+    "checkout_accent_color": "#111827",
+    "checkout_button_color": "#111827",
+    "content_for_index": [
+
+    ]
+  },
   "presets": {
-    "Default": { }
+    "Default": {
+    }
   }
 }
