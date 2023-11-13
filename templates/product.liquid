@@ -37,7 +37,13 @@
                     <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
                          <div class="mt-4 mr-4">
                               <label class="font-bold text-gray-700 dark:text-gray-300" for="Quantity">Select: </label>
-                              <select name="id" id="productSelect">
+                              <select
+                                   name="id"
+                                   id="productSelect"
+                                   class="form-control"
+                                   required=""
+                              >
+                                   <option value="" disabled="disabled">Choose an option</option>
                                    {% for variant in product.variants %}
                                         {% if variant.available %}
                                              <option value="{{ variant.id }}">
