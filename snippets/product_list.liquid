@@ -6,7 +6,7 @@
                     width="auto"
                     height="auto"
                     class="p-8 rounded-t-lg"
-                    src="{{ product.featured_media | image_url: '500x500' }}
+                    src="{{ product.featured_media | image_url: '600x600' }}"
                     alt="product"
                >
           </a>
@@ -77,11 +77,10 @@
           </div>
      </div>
 {% endfor %}
-
-     {{ collections['featured-products'].products | json }}
-{{ shop.money_with_currency_format }}
-
-
+{% comment %}
+          {{ collections['featured-products'].products | json }}
+     {{ shop.money_with_currency_format }}
+{% endcomment %}
 
 {% comment %}
      {% for collection in collections %}
