@@ -1,6 +1,6 @@
 {
      "plugins": ["@shopify/prettier-plugin-liquid"],
-     "printWidth": 10000,
+
      "tabWidth": 5,
-     "proseWrap": "preserve"
+     "proseWrap": "always"
 }
