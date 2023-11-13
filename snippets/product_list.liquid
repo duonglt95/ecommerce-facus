@@ -1,12 +1,12 @@
 {% for product in collections['featured-products'].products %}
-     <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-          <a href="{{ product.url }}">
+     <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 my-10">
+          <a href="{{ product.url }}" class="text-center">
                <img
                     loading="lazy"
                     width="auto"
                     height="auto"
                     class="p-8 rounded-t-lg"
-                    src="{{ product.featured_media | image_url: '600x600' }}"
+                    src="{{ product.featured_media | img_url: 'medium' }}"
                     alt="product"
                >
           </a>
@@ -67,12 +67,49 @@
                     >
                </div>
                <div class="flex items-center justify-between">
-                    <span class="text-3xl font-bold text-gray-900 dark:text-white">{{ product.price }}</span>
-                    <a
-                         href="#"
-                         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                         >Add to cart</a
+                    <span class="text-3xl font-bold text-gray-900 dark:text-white">{{ product.price | money }}</span>
+               </div>
+               <div class="flex items-center justify-between py-4 w-full">
+                    <form
+                         class="w-full"
+                         action="/cart/add"
+                         method="post"
+                         enctype="multipart/form-data"
+                         id="AddToCartForm"
                     >
+                         <div class="flex justify-between items-center">
+                              <label class="text-white text-left" for="Quantity">Select: </label>
+                              <select required name="id" id="productSelect" class="text-center">
+                                   {% for variant in product.variants %}
+                                        {% if variant.available %}
+                                             {% if variant.title == 'Default Title' %}
+                                                  {% assign titleDefault = product.title | append: ' default' %}
+                                             {% else %}
+                                                  {% assign titleDefault = variant.title %}
+                                             {% endif %}
+                                             <option value="{{ variant.id }}">
+                                                  {{ titleDefault }} - {{ variant.price | money_with_currency }}
+                                             </option>
+                                        {% else %}
+                                             <option disabled="disabled">Simple product - sold out</option>
+                                        {% endif %}
+                                   {% endfor %}
+                              </select>
+                              {{ current_variant.price | money }}
+                         </div>
+                         <div class="flex justify-between items-center">
+                              <label class="text-white text-left" for="Quantity">Quantity: </label>
+                              <input class="" type="number" id="Quantity" name="quantity" value="1" min="1">
+                         </div>
+                         <button
+                              class="mt-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                              type="submit"
+                              name="add"
+                              id="AddToCart"
+                         >
+                              Add to cart
+                         </button>
+                    </form>
                </div>
           </div>
      </div>
@@ -81,7 +118,6 @@
      {{ collections['featured-products'].products | json }}
      {{ shop.money_with_currency_format }}
 {% endcomment %}
-
 {% comment %}
      {% for collection in collections %}
           {{- collection.title | link_to: collection.url }}
