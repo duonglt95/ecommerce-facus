@@ -1,5 +1,11 @@
 <h1 class="text-center my-5 font-bold uppercase">{{ section.settings.title }}</h1>
 <h3 class="text-center my-5 font-bold">{{ section.settings.subtitle }}</h3>
+<a
+     href="{{ section.settings.btnurl }}"
+     class="font-bold m-auto inline-block mb-4 border-2 border-cyan-950 p-1 rounded-lg "
+>
+     {{- section.settings.btnlabel -}}
+</a>
 <img
      loading="lazy"
      width="300"
@@ -12,6 +18,7 @@
 {
      "name": "Template 404",
      "tag": "section",
+     "class": "text-center",
      "settings": [
           {
                "type": "text",
@@ -24,6 +31,18 @@
                "id": "subtitle",
                "default": "the page 404 subtitle",
                "label": "subtitle 404"
+          },
+          {
+               "type": "text",
+               "id": "btnlabel",
+               "default": "Back to Home",
+               "label": "Back to Home"
+          },
+          {
+               "type": "url",
+               "id": "btnurl",
+               "default": "/",
+               "label": "/"
           }
      ]
 }
