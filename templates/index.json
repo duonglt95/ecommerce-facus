@@ -1,0 +1,12 @@
+{
+     "name": "Template Home",
+     "sections": {
+          "product-list": {
+               "type": "product-list",
+               "settings": {
+                    "featured_collection": "all"
+               }
+          }
+     },
+     "order": ["product-list"]
+}
