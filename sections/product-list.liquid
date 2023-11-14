@@ -5,9 +5,10 @@
      {% assign featured_image = product.featured_image | img_url: 'medium' %}
 {% endif %}
 <div class="homepage text-center">
+     <h1 class="font-bold uppercase mt-5">{{ section.settings.title }}</h1>
      <div class="flex justify-center gap-5 flex-wrap w-full">
-          {% for product in collections['featured-products'].products %}
-               <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 my-10">
+          {% for product in section.settings.featured_collection.products %}
+               <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 my-5">
                     <a href="{{ product.url }}" class="text-center">
                          <img
                               loading="lazy"
