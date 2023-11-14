@@ -4,7 +4,7 @@
           "product-list": {
                "type": "product-list",
                "settings": {
-                    "featured_collection": "all"
+                    "featured_collection": "featured-products"
                }
           }
      },
