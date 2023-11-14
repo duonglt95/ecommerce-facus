@@ -1,0 +1,11 @@
+{
+     "name": "template 404 Not Found",
+     "layout": "custom_theme",
+     "wrapper": "div#404_template.custom-class[custom-attribute=hello]",
+     "sections": {
+          "template-404": {
+               "type": "example-404"
+          }
+     },
+     "order": ["template-404"]
+}
