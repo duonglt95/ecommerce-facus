@@ -1,12 +1,22 @@
 {
-     "name": "Template Home",
-     "sections": {
-          "product-list": {
-               "type": "product-list",
-               "settings": {
-                    "featured_collection": "featured-products"
-               }
-          }
-     },
-     "order": ["product-list"]
+  "sections": {
+    "product-list": {
+      "type": "product-list",
+      "settings": {
+        "title": "Featured collection",
+        "featured_collection": "featured-products"
+      }
+    },
+    "b37f97c2-0dd8-4429-8069-fbd69d795f01": {
+      "type": "product-list",
+      "settings": {
+        "title": "Featured collection",
+        "featured_collection": "featured-products"
+      }
+    }
+  },
+  "order": [
+    "product-list",
+    "b37f97c2-0dd8-4429-8069-fbd69d795f01"
+  ]
 }
