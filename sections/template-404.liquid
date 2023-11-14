@@ -1,0 +1,29 @@
+<h1 class="text-center my-5 font-bold uppercase">{{ section.settings.title }}</h1>
+<h3 class="text-center my-5 font-bold">{{ section.settings.subtitle }}</h3>
+<img
+     loading="lazy"
+     width="300"
+     height="300"
+     src="{{ 'noob.gif' | asset_img_url: 'large' }}"
+     class="logo h-300 text-center m-auto mb-5"
+     alt="FlowBite Logo"
+>
+{% schema %}
+{
+     "name": "Template 404",
+     "settings": [
+          {
+               "type": "text",
+               "id": "title",
+               "default": "404",
+               "label": "heading 404"
+          },
+          {
+               "type": "text",
+               "id": "subtitle",
+               "default": "the page 404 subtitle",
+               "label": "subtitle 404"
+          }
+     ]
+}
+{% endschema %}
