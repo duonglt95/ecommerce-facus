@@ -1,0 +1,7 @@
+<div class="max-w-screen-xl mx-auto">
+     <div class="flex flex-row flex-wrap gap-3 my-5">
+          {% for collection in collections %}
+               {%- render 'collection-card', collection: collection -%}
+          {% endfor %}
+     </div>
+</div>

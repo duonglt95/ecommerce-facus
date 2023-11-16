@@ -1,0 +1,9 @@
+{
+     "wrapper": "div#div_id.div_class[attribute-one=value]",
+     "sections": {
+          "template-list-collections": {
+               "type": "template-list-collections"
+          }
+     },
+     "order": ["template-list-collections"]
+}

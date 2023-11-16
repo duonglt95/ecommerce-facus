@@ -1,9 +1,10 @@
 {%- paginate collection.products by 6 -%}
-     {%- for product in collection.products -%}
-          <a href="{{ product.url }}" target="_blank" rel="noopener noreferrer">{{ product.title }}</a>
-     {%- else -%}
-          <p>no product available</p>
-     {%- endfor -%}
-
+     <div class="flex justify-center gap-5 flex-wrap w-full">
+          {%- for product in collection.products -%}
+               {%- render 'product-card', product: product -%}
+          {%- else -%}
+               <p>no product available</p>
+          {%- endfor -%}
+     </div>
      {{- paginate | default_pagination -}}
 {%- endpaginate -%}

@@ -1,67 +1,4 @@
 {% if cart.item_count > 0 %}
-     <h1>cart</h1>
-     <form action="/cart" method="post" novalidate>
-          <table>
-               <thead>
-                    <th colspan="2">Prod</th>
-                    <th>Price</th>
-                    <th>Qty</th>
-                    <th>total</th>
-               </thead>
-               <tbody>
-                    {% for item in cart.items %}
-                         <tr>
-                              <td>
-                                   <a href="{{ item.url | within: collections.all }}">
-                                        <img
-                                             width="300"
-                                             height="300"
-                                             loading="lazy"
-                                             src="{{ item | image_url: 'medium' }}"
-                                             alt="{{ item.title | escape }}"
-                                        >
-                                   </a>
-                              </td>
-                              <td>
-                                   <a href="{{ item.url }}">{{ item.product.title }}</a>
-                                   {{ item.variant.title }}
-                                   <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0">remove</a>
-                              </td>
-                              <td>{{ item.price | money }}</td>
-                              <td>
-                                   <input
-                                        type="number"
-                                        name="updates[]"
-                                        id="updates_{{ item.key }}"
-                                        value="{{ item.quantity }}"
-                                        min="0"
-                                   >
-                              </td>
-                              <td>
-                                   {% if item.original_line_price != item.line_price -%}
-                                        {{- item.original_line_price | money -}}
-                                   {%- endif %}
-                                   {{ item.line_price | money }}
-                                   {% for discount in item.discounts -%}
-                                        {{- discount.title -}}
-                                   {%- endfor %}
-                              </td>
-                         </tr>
-                    {% endfor %}
-               </tbody>
-          </table>
-          <div>
-               <p>sub total : {{ cart.total_price | money }}</p>
-               <button type="submit" name="update">Update</button>
-               <button type="submit" name="checkout">Checkout</button>
-          </div>
-     </form>
-{% else %}
-     <h2>cart</h2>
-     Cart is empty
-{% endif %}
-
-{% if cart.item_count > 0 %}
      <form action="/cart" method="post" novalidate>
           <div class="h-screen bg-gray-100 pt-20">
                <h1 class="mb-10 text-center text-2xl font-bold">Cart Items</h1>
@@ -81,26 +18,41 @@
                                    </a>
                                    <div class="sm:ml-4 sm:flex sm:w-full sm:justify-between">
                                         <div class="mt-5 sm:mt-0">
-                                             <h2 class="text-lg font-bold text-gray-900">Nike Air Max 2019</h2>
-                                             <p class="mt-1 text-xs text-gray-700">36EU - 4US</p>
+                                             <h2 class="text-lg font-bold text-gray-900">{{ item.product.title }}</h2>
+                                             <p class="mt-1 text-xs text-gray-700">vice car lone</p>
                                         </div>
-                                        <div class="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
-                                             <div class="flex items-center border-gray-100">
+                                        <div class="mt-4 md:flex flex-col justify-start items-end sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
+                                             <div class="flex items-center border-gray-100 ml-auto">
                                                   <span class="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50">
                                                        -
                                                   </span>
                                                   <input
                                                        class="h-8 w-12 border bg-white text-center text-xs outline-none"
                                                        type="number"
-                                                       value="2"
-                                                       min="1"
+                                                       name="updates[]"
+                                                       id="updates_{{ item.key }}"
+                                                       value="{{ item.quantity }}"
+                                                       min="0"
                                                   >
                                                   <span class="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50">
                                                        +
                                                   </span>
                                              </div>
                                              <div class="flex items-center space-x-4">
-                                                  <p class="text-sm">{{ item.price | money }}</p>
+                                                  <div class="flex flex-col justify-start items-end">
+                                                       <p class="text-sm">{{ item.price | money }}</p>
+                                                       <p class="text-sm">
+                                                            All:
+                                                            {% if item.original_line_price != item.line_price -%}
+                                                                 {{- item.original_line_price | money -}}
+                                                            {%- endif %}
+                                                            {{ item.line_price | money }}
+                                                            {% for discount in item.discounts -%}
+                                                                 {{- discount.title -}}
+                                                            {%- endfor %}
+                                                       </p>
+                                                  </div>
+
                                                   <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0">
                                                        <svg
                                                             xmlns="http://www.w3.org/2000/svg"
@@ -123,7 +75,7 @@
                     <div class="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3">
                          <div class="mb-2 flex justify-between">
                               <p class="text-gray-700">Subtotal</p>
-                              <p class="text-gray-700">$129.99</p>
+                              <p class="text-gray-700">{{ cart.total_price | money }}</p>
                          </div>
                          <div class="flex justify-between">
                               <p class="text-gray-700">Shipping</p>
@@ -133,7 +85,7 @@
                          <div class="flex justify-between">
                               <p class="text-lg font-bold">Total</p>
                               <div class="">
-                                   <p class="mb-1 text-lg font-bold">$134.98 USD</p>
+                                   <p class="mb-1 text-lg font-bold">{{ cart.total_price | money }}</p>
                                    <p class="text-sm text-gray-700">including VAT</p>
                               </div>
                          </div>

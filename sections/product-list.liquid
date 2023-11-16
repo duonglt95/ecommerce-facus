@@ -1,6 +1,6 @@
 {% assign current_variant = product.selected_or_first_available_variant %}
 {% if current_variant.featured_image != null %}
-     {% assign featured_image = current_variant.featured_image | img_url: 'medium' %}
+     {% assign featured_image = current_variant.featured_image | image_url: width: 100, height: 100 %}
 {% else %}
      {% assign featured_image = product.featured_image | img_url: 'medium' %}
 {% endif %}
