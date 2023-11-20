@@ -1,9 +1,16 @@
 {
-     "name": "Template 404",
-     "sections": {
-          "template-404": {
-               "type": "template-404"
-          }
-     },
-     "order": ["template-404"]
+  "sections": {
+    "template-404": {
+      "type": "template-404",
+      "settings": {
+        "title": "404",
+        "subtitle": "the page 404 subtitle2",
+        "btnlabel": "Back to Home",
+        "btnurl": "\/"
+      }
+    }
+  },
+  "order": [
+    "template-404"
+  ]
 }
